@@ -8,6 +8,7 @@
   with_items:
     - deb http://download.webmin.com/download/repository sarge contrib
     - deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib
+  notify: restart usermin
   tags: hswong3i.usermin
 
 - name: apt-key add
@@ -16,6 +17,7 @@
     state=present
   with_items:
     - http://www.webmin.com/jcameron-key.asc
+  notify: restart usermin
   tags: hswong3i.usermin
 
 - name: apt-get install
@@ -24,4 +26,27 @@
     state=latest
   with_items:
     - usermin
+  notify: restart usermin
+  tags: hswong3i.usermin
+
+- name: replace in file
+  replace:
+    dest={{ item.dest }}
+    regexp={{ item.regexp }}
+    replace={{ item.replace }}
+  with_items:
+    - { dest: '/etc/usermin/miniserv.conf', regexp: '^listen=.*$', replace: "listen={{ usermin_listen }}" }
+    - { dest: '/etc/usermin/miniserv.conf', regexp: '^port=.*$', replace: "port={{ usermin_port }}" }
+    - { dest: '/etc/usermin/miniserv.conf', regexp: '^ssl=.*$', replace: "ssl={{ usermin_ssl }}" }
+  notify: restart usermin
+  tags: hswong3i.usermin
+
+- name: enable incomming connection
+  ufw:
+    to_port={{ item }}
+    proto=tcp
+    rule=allow
+  with_items:
+    - "{{ usermin_port }}"
+  notify: restart usermin
   tags: hswong3i.usermin
