@@ -1,5 +1,5 @@
 Ansible Role for Usermin
-=======================
+========================
 
 [![Build Status](https://travis-ci.org/pantarei/ansible-role-usermin.svg?branch=master)](https://travis-ci.org/pantarei/ansible-role-usermin)
  [![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-usermin.svg)](https://github.com/pantarei/ansible-role-usermin)
@@ -63,8 +63,8 @@ Role Variables
 Dependencies
 ------------
 
--   [hswong3i.apt](https://galaxy.ansible.com/detail#/role/5970)
--   [hswong3i.ufw](https://galaxy.ansible.com/detail#/role/6153)
+-   [hswong3i.apt](https://github.com/pantarei/ansible-role-apt)
+-   [hswong3i.ufw](https://github.com/pantarei/ansible-role-ufw)
 
 Example Playbook
 ----------------
@@ -76,7 +76,7 @@ Example Playbook
 License
 -------
 
--   Code released under [MIT](https://github.com/hswong3i/ansible-role-usermin/blob/master/LICENSE)
+-   Code released under [MIT](https://github.com/pantarei/ansible-role-usermin/blob/master/LICENSE)
 -   Docs released under [CC BY 4.0](http://creativecommons.org/licenses/by/4.0/)
 
 Author Information
