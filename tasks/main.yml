@@ -25,6 +25,7 @@
     name="{{ item }}"
     state=latest
   with_items:
+    - ufw
     - usermin
   notify: restart usermin
   tags: hswong3i.usermin
