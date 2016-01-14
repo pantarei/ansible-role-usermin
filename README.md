@@ -2,9 +2,9 @@ Ansible Role for Usermin
 ========================
 
 [![Build Status](https://travis-ci.org/pantarei/ansible-role-usermin.svg?branch=master)](https://travis-ci.org/pantarei/ansible-role-usermin)
- [![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-usermin.svg)](https://github.com/pantarei/ansible-role-usermin)
- [![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-usermin.svg)](https://github.com/pantarei/ansible-role-usermin/blob/master/LICENSE)
- [![Ansible Role](https://img.shields.io/ansible/role/6235.svg)](https://galaxy.ansible.com/detail#/role/6235)
+[![GitHub tag](https://img.shields.io/github/tag/pantarei/ansible-role-usermin.svg)](https://github.com/pantarei/ansible-role-usermin)
+[![GitHub license](https://img.shields.io/github/license/pantarei/ansible-role-usermin.svg)](https://github.com/pantarei/ansible-role-usermin/blob/master/LICENSE)
+[![Ansible Role](https://img.shields.io/ansible/role/6235.svg)](https://galaxy.ansible.com/detail#/role/6235)
 
 Ansible Role for Usermin Installation.
 
