@@ -3,51 +3,51 @@
 
 - name: apt-key add
   apt_key:
-    url="{{ item.url }}"
-    state="{{ item.state }}"
+    url: "{{ item.url }}"
+    state: "{{ item.state }}"
   with_items:
-    - { state: 'present', url: 'http://www.webmin.com/jcameron-key.asc' }
+    - { state: "present", url: "http://www.webmin.com/jcameron-key.asc" }
   notify: restart usermin
   tags: hswong3i.usermin
 
 - name: apt-add-repository
   apt_repository:
-    repo="{{ item.repo }}"
-    state="{{ item.state }}"
+    repo: "{{ item.repo }}"
+    state: "{{ item.state }}"
   with_items:
-    - { state: 'present', repo: 'deb http://download.webmin.com/download/repository sarge contrib' }
-    - { state: 'present', repo: 'deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib' }
+    - { state: "present", repo: "deb http://download.webmin.com/download/repository sarge contrib" }
+    - { state: "present", repo: "deb http://webmin.mirror.somersettechsolutions.co.uk/repository sarge contrib" }
   notify: restart usermin
   tags: hswong3i.usermin
 
 - name: apt-get install
   apt:
-    name="{{ item.name }}"
-    state="{{ item.state }}"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
   with_items:
-    - { state: 'latest', name: 'ufw' }
-    - { state: 'latest', name: 'usermin' }
+    - { state: "latest", name: "ufw" }
+    - { state: "latest", name: "usermin" }
   notify: restart usermin
   tags: hswong3i.usermin
 
 - name: replace in file
   replace:
-    dest="{{ item.dest }}"
-    regexp="{{ item.regexp }}"
-    replace="{{ item.replace }}"
+    dest: "{{ item.dest }}"
+    regexp: "{{ item.regexp }}"
+    replace: "{{ item.replace }}"
   with_items:
-    - { dest: '/etc/usermin/miniserv.conf', regexp: '^listen=.*$', replace: "listen={{ usermin_listen }}" }
-    - { dest: '/etc/usermin/miniserv.conf', regexp: '^port=.*$', replace: "port={{ usermin_port }}" }
-    - { dest: '/etc/usermin/miniserv.conf', regexp: '^ssl=.*$', replace: "ssl={{ usermin_ssl }}" }
+    - { dest: "/etc/usermin/miniserv.conf", regexp: "^listen=.*$", replace: "listen={{ usermin_listen }}" }
+    - { dest: "/etc/usermin/miniserv.conf", regexp: "^port=.*$", replace: "port={{ usermin_port }}" }
+    - { dest: "/etc/usermin/miniserv.conf", regexp: "^ssl=.*$", replace: "ssl={{ usermin_ssl }}" }
   notify: restart usermin
   tags: hswong3i.usermin
 
 - name: enable incomming connection
   ufw:
-    to_port="{{ item.to_port }}"
-    proto="{{ item.proto }}"
-    rule="{{ item.rule }}"
+    to_port: "{{ item.to_port }}"
+    proto: "{{ item.proto }}"
+    rule: "{{ item.rule }}"
   with_items:
-    - { to_port: "{{ usermin_port }}", proto: 'tcp', rule: 'allow' }
+    - { to_port: "{{ usermin_port }}", proto: "tcp", rule: "allow" }
   notify: restart usermin
   tags: hswong3i.usermin
