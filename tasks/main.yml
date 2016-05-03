@@ -25,7 +25,6 @@
     name: "{{ item.name }}"
     state: "{{ item.state }}"
   with_items:
-    - { state: "latest", name: "ufw" }
     - { state: "latest", name: "usermin" }
   notify: restart usermin
   tags: hswong3i.usermin
@@ -39,15 +38,5 @@
     - { dest: "/etc/usermin/miniserv.conf", regexp: "^listen=.*$", replace: "listen={{ usermin_listen }}" }
     - { dest: "/etc/usermin/miniserv.conf", regexp: "^port=.*$", replace: "port={{ usermin_port }}" }
     - { dest: "/etc/usermin/miniserv.conf", regexp: "^ssl=.*$", replace: "ssl={{ usermin_ssl }}" }
-  notify: restart usermin
-  tags: hswong3i.usermin
-
-- name: enable incomming connection
-  ufw:
-    to_port: "{{ item.to_port }}"
-    proto: "{{ item.proto }}"
-    rule: "{{ item.rule }}"
-  with_items:
-    - { to_port: "{{ usermin_port }}", proto: "tcp", rule: "allow" }
   notify: restart usermin
   tags: hswong3i.usermin
