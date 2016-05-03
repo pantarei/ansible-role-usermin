@@ -1,6 +1,6 @@
 ---
 # defaults file for hswong3i.usermin
 
-usermin_listen: 20000
-usermin_port: 20000
-usermin_ssl: 1
+usermin_listen: "20000"
+usermin_port: "20000"
+usermin_ssl: "1"
