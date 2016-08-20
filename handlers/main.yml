@@ -3,5 +3,7 @@
 
 - name: restart usermin
   service:
-    name: "usermin"
-    state: "restarted"
+    name: "{{ item.name }}"
+    state: "{{ item.state }}"
+  with_items:
+    - { name: "usermin", state: "restarted" }
